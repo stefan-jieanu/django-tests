@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>My products</h1>
+
+    {% for product in products %}
+        <p>{{ product.name }}</p>
+    {% empty %}
+        <p>No products.</p>
+    {% endfor %}
+</body>
+</html>

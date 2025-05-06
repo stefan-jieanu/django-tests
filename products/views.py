@@ -1,8 +1,7 @@
-from lib2to3.fixes.fix_input import context
-
+from django.http import JsonResponse
 from django.shortcuts import render
-
 from products.models import Product
+from products.serilizers import ProductSerializer
 
 
 # Create your views here.
@@ -22,3 +21,13 @@ def products_page(request):
             'products': products
         }
     )
+
+def api_products_list(request):
+    if request.method=='GET':
+        products = Product.objects.all()
+        s = ProductSerializer(products, many=True)
+        return JsonResponse(s.data, safe=False)
+
+
+# response = http.get(mysite/api/products)
+# response.data[]
